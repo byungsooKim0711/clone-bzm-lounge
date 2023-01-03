@@ -21,7 +21,7 @@
 | `Kotlin`                  | `○`       |                                                              |
 | `Spring Boot > 3.x?`      | `△`       |                                                              |
 | `JPA`                     | `△`       |                                                              |
-| `SSE (Server Sent Event)` | `△`       | 1. SSE 프로토콜의 이해<br />2. Application이 Scale out 되었을 떄의 고려 |
+| `SSE (Server Sent Event)` | `△`       | 1. SSE 프로토콜의 이해<br />2. Application이 Scale out 되었을 때의 고려 |
 | `QueryDSL`                | `△`       |                                                              |
 | `MySQL`                   | `△`       |                                                              |
 | `Gradle`                  | `△`       |                                                              |
