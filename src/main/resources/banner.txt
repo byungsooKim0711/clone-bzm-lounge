@@ -1,0 +1,11 @@
+${AnsiColor.BRIGHT_GREEN}  ______  __        ______   .__   __.  _______         .______    ________  .___  ___.          __        ______    __    __  .__   __.   _______  _______
+${AnsiColor.BRIGHT_GREEN} /      ||  |      /  __  \  |  \ |  | |   ____|        |   _  \  |       /  |   \/   |         |  |      /  __  \  |  |  |  | |  \ |  |  /  _____||   ____|
+${AnsiColor.BRIGHT_GREEN}|  ,----'|  |     |  |  |  | |   \|  | |  |__    ______ |  |_)  | `---/  /   |  \  /  |  ______ |  |     |  |  |  | |  |  |  | |   \|  | |  |  __  |  |__
+${AnsiColor.BRIGHT_GREEN}|  |     |  |     |  |  |  | |  . `  | |   __|  |______||   _  <     /  /    |  |\/|  | |______||  |     |  |  |  | |  |  |  | |  . `  | |  | |_ | |   __|
+${AnsiColor.BRIGHT_GREEN}|  `----.|  `----.|  `--'  | |  |\   | |  |____         |  |_)  |   /  /----.|  |  |  |         |  `----.|  `--'  | |  `--'  | |  |\   | |  |__| | |  |____
+${AnsiColor.BRIGHT_GREEN} \______||_______| \______/  |__| \__| |_______|        |______/   /________||__|  |__|         |_______| \______/   \______/  |__| \__|  \______| |_______|
+
+${AnsiColor.BRIGHT_RED} ${spring.application.name} ${AnsiColor.BRIGHT_CYAN}(profile: ${spring.profiles.active})
+${AnsiColor.BRIGHT_RED} Powered by Spring Boot ${spring-boot.version}
+
+${Ansi.DEFAULT}
