@@ -8,6 +8,4 @@ class LoungeApplication
 
 fun main(args: Array<String>) {
     runApplication<LoungeApplication>(*args)
-
-    println("asdf")
 }
