@@ -1,1 +1,15 @@
+spring:
+  application:
+    name: CLONE-BZM-LOUNGE
+  profiles:
+    active: local
+  banner:
+    location: classpath:banner.txt
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  config: classpath:logback-spring.xml
+
 

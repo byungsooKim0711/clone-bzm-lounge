@@ -33,7 +33,8 @@ Footer
 | Docs     | 문서 수정                                             |
 | Style    | 코드 스타일, 포맷팅 수정                              |
 | Chore    | 빌드 업무 수정, 패키지 메니저 수정, 기타 (.gitignore) |
-|          |                                                       |
+| Add      | 단순 파일 추가                         |
+| Remove   | 단순 파일 삭제   |
 
 #### Subject
 
