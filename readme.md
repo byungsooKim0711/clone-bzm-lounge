@@ -65,7 +65,9 @@
 
 
 
-
+### Conventions
+#### Git Commit Convention
+- [링크](./docs/Convention.md)
 
 
 
