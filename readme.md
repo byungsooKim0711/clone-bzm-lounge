@@ -48,8 +48,8 @@
 | [문의사항 참조](./docs/Mention.md)   | Mention         |                                                              |
 | [SSE, 답글 알림(web)](./docs/Notification.md) | Notification    |                                                              |
 | 개인정보 포함 관련 여부 (망분리)           |                 | 기술적으로 망분리는 어떻게 진행하는지 이해/고민 필요         |
-| [발신프로필](./docs/Sender.md)             | Sender          | 해당 항목의 내용과 필요한 필드는 알 고 있으나 autocomplete 용 api로 단순하게 설계합니다. |
-| [알림톡 템플릿](./docs/Template.md)        | Template        | 해당 항목의 내용과 필요한 필드는 알 고 있으나 autocomplete 용 api로 단순하게 설계합니다. |
+| [발신프로필](docs/message/Sender.md)             | Sender          | 해당 항목의 내용과 필요한 필드는 알 고 있으나 autocomplete 용 api로 단순하게 설계합니다. |
+| [알림톡 템플릿](docs/message/Template.md)        | Template        | 해당 항목의 내용과 필요한 필드는 알 고 있으나 autocomplete 용 api로 단순하게 설계합니다. |
 | [캘린더](./docs/Calender.md)       | Calender        |                                                              |
 | [첨부파일](./docs/Attachment.md) | Attachment      |                                                              |
 | [공감/좋아요](./docs/Empathy.md)           | Empathy         |                                                              |
