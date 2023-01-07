@@ -28,7 +28,7 @@ Path: /api/sender/{senderId}/template/{templateId}
 
 | 항목              | 타입       | 설명                                                      |
 | ----------------- | ---------- | --------------------------------------------------------- |
-| id                | Number     | 템플릿 테이블 PK                                          |
+| id                | Number     | PK                                                        |
 | code              | Text(30)   | 템플릿 코드                                               |
 | content           | Text(1000) | 템플릿 내용                                               |
 | dormant           | Boolean    | 휴면 여부 (true: 휴면, false: 정상)                       |
@@ -54,7 +54,7 @@ Path: /api/sender/{senderId}/template/{templateId}/comment
 
 | 항목         | 타입     | 설명             |
 | ------------ | -------- | ---------------- |
-| id           | Number   | 템플릿 테이블 PK |
+| id           | Number   | PK |
 | comment      | Text     | 검수 내용        |
 | status       | Text(3)  | REQ, REJ, APR    |
 |template_id|Number|템플릿 테이블의 ID|
@@ -77,7 +77,7 @@ Path: /api/sender/{senderId}/template/{templateId}/history
 
 | 항목 | 타입   | 설명             |
 | ---- | ------ | ---------------- |
-| id   | Number | 템플릿 테이블 PK |
+| id   | Number | PK |
 |content|Text|상태변경 내용 (ex. 휴면 해제 -> 휴면) / (ex. 회원 > 회원가입)|
 |type|Text|CATEGORY(카테고리 변경), STATUS(상태변경), DORMANT(휴면상태 변경)|
 |template_id|Number|템플릿 테이블의 ID|
