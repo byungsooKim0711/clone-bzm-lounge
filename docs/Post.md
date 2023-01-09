@@ -13,7 +13,7 @@ Path: /api/post
 |title|Text(100)|제목|
 |content|Text|내용|
 |status|Text(1)|A: 정상|
-|type|Text(1)|Q(question)|
+|~~type~~|~~Text(1)~~|~~Q(question)~~|
 |complete_date|Datetime|완료일자|
 |privacy|Boolean|개인정보 포함 여부|
 |category|Text|게시글 카테고리| 
