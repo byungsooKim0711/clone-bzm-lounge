@@ -44,16 +44,16 @@
 | [유저](./docs/User.md)                | User            |                                                              |
 | [관리자](./docs/AdminUser.md)       | AdminUser       |                                                              |
 | [공지사항](./docs/Notice.md)         | Notice          | 팝업용(시작~종료), 상단고정                                  |
-| [문의사항](./docs/Post.md)                 | Post  | 문의사항 등록 시 사업/심사운영/상담운영/개발주번/            |
-| [문의사항 답글](./docs/Comment.md)        | Comment, Answer |                                                              |
+| [문의사항](docs/post/Post.md)                 | Post  | 문의사항 등록 시 사업/심사운영/상담운영/개발주번/            |
+| [문의사항 답글](docs/post/Comment.md)        | Comment, Answer |                                                              |
 | [문의사항 참조](./docs/Mention.md)   | Mention         |                                                              |
 | [SSE, 답글 알림(web)](./docs/Notification.md) | Notification    |                                                              |
 | 개인정보 포함 관련 여부 (망분리)           |                 | 기술적으로 망분리는 어떻게 진행하는지 이해/고민 필요         |
 | [발신프로필](docs/message/Sender.md)             | Sender          | 해당 항목의 내용과 필요한 필드는 알 고 있으나 autocomplete 용 api로 단순하게 설계합니다. |
 | [알림톡 템플릿](docs/message/Template.md)        | Template        | 해당 항목의 내용과 필요한 필드는 알 고 있으나 autocomplete 용 api로 단순하게 설계합니다. |
 | [캘린더](./docs/Calender.md)       | Calender        |                                                              |
-| [첨부파일](./docs/Attachment.md) | Attachment      |                                                              |
-| [공감/좋아요](./docs/Empathy.md)           | Empathy         |                                                              |
+| [첨부파일](docs/post/Attachment.md) | Attachment      |                                                              |
+| [공감/좋아요](docs/post/Empathy.md)           | Empathy         |                                                              |
 | searchEngine (별도 검색엔진으로 사용? es?) |                 |                                                              |
 | [문의 카테고리](./docs/Category.md)       | Category        |                                                              |
 |                                            |                 |                                                              |
