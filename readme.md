@@ -61,7 +61,9 @@
 
 - trace-id > msa 방식으로 사용중인가? sleuth?
 
-#### 
+#### 아키텍처
+- DDD hexagonal 무작정 해보기
+- (참고) https://if.kakao.com/2022/session/37
 
 
 
