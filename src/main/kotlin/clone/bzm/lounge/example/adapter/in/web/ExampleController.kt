@@ -11,6 +11,8 @@ class ExampleController(
     private val exampleUseCase: LoadExampleUseCase,
     private val createExampleUseCase: CreateExampleUseCase) {
 
+    // todo: 외부로 나가는건 domain이 나가는게 아니고 별도 ExampleResponse로 변경 필요한듯
+
     @GetMapping("/api/example/{exampleId}")
     fun findExampleById(@PathVariable exampleId: String): Example {
         return exampleUseCase.findExampleById(exampleId);
