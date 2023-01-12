@@ -1,16 +1,23 @@
 package clone.bzm.lounge.example.adapter.`in`.web
 
-import clone.bzm.lounge.example.application.port.`in`.ExampleUseCase
+import clone.bzm.lounge.example.adapter.`in`.web.dto.ExampleCreateRequest
+import clone.bzm.lounge.example.application.port.`in`.CreateExampleUseCase
+import clone.bzm.lounge.example.application.port.`in`.LoadExampleUseCase
 import clone.bzm.lounge.example.domain.Example
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
-class ExampleController(private val exampleUseCase: ExampleUseCase) {
+class ExampleController(
+    private val exampleUseCase: LoadExampleUseCase,
+    private val createExampleUseCase: CreateExampleUseCase) {
 
     @GetMapping("/api/example/{exampleId}")
-    fun example(@PathVariable exampleId: String): Example {
-        return exampleUseCase.example(exampleId);
+    fun findExampleById(@PathVariable exampleId: String): Example {
+        return exampleUseCase.findExampleById(exampleId);
+    }
+
+    @PostMapping("/api/example")
+    fun createExample(@RequestBody exampleCreateRequest: ExampleCreateRequest): Example {
+        return createExampleUseCase.createExample(exampleCreateRequest)
     }
 }
