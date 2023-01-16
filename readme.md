@@ -41,7 +41,7 @@
 
 | 항목                                       | 엔티티          | 비고                                                         |
 | ------------------------------------------ | --------------- | ------------------------------------------------------------ |
-| [유저](./docs/User.md)                | User            |                                                              |
+| [유저](docs/user/User.md)                | User            |                                                              |
 | [관리자](./docs/AdminUser.md)       | AdminUser       |                                                              |
 | [공지사항](./docs/Notice.md)         | Notice          | 팝업용(시작~종료), 상단고정                                  |
 | [문의사항](docs/post/Post.md)                 | Post  | 문의사항 등록 시 사업/심사운영/상담운영/개발주번/            |
@@ -55,7 +55,7 @@
 | [첨부파일](docs/post/Attachment.md) | Attachment      |                                                              |
 | [공감/좋아요](docs/post/Empathy.md)           | Empathy         |                                                              |
 | searchEngine (별도 검색엔진으로 사용? es?) |                 |                                                              |
-| [문의 카테고리](./docs/Category.md)       | Category        |                                                              |
+| [문의 카테고리](docs/post/Category.md)       | Category        |                                                              |
 |                                            |                 |                                                              |
 |                                            |                 |                                                              |
 
@@ -63,7 +63,10 @@
 
 #### 아키텍처
 - DDD hexagonal 무작정 해보기
-- (참고) https://if.kakao.com/2022/session/37
+- (참고) 
+    - https://if.kakao.com/2022/session/37
+    - https://engineering.linecorp.com/ko/blog/port-and-adapter-architecture/
+    - https://betterprogramming.pub/hexagonal-architecture-with-spring-boot-74e93030eba3
 
 
 
