@@ -14,7 +14,7 @@ class ExampleMapper {
 
     static ExampleJpaEntity mapToJpaEntity(@NotNull Example domain) {
         return ExampleJpaEntity.from(
-                domain.getId().getValue(),
+                domain.getId() == null ? null : domain.getId().getValue(),
                 domain.getName()
         );
     }
