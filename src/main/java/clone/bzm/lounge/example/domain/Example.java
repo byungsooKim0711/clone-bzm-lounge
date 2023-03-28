@@ -7,24 +7,34 @@ import java.util.UUID;
 @Getter
 public class Example {
 
-    private String id;
+    private final ExampleId id;
 
-    private String name;
+    private final String name;
 
-    protected Example() {
-
-    }
-
-    protected Example(String name) {
+    private Example(ExampleId id, String name) {
+        this.id = id;
         this.name = name;
-        this.id = UUID.randomUUID().toString();
     }
 
-    public static Example from(String name) {
-        return new Example(name);
+    public static Example withoutId(String name) {
+        return new Example(null, name);
     }
 
-    public void updateName(String name) {
-        this.name = name;
+    public static Example withId(ExampleId id, String name) {
+        return new Example(id, name);
+    }
+
+
+    @Getter
+    public static final class ExampleId {
+        private final Long value;
+
+        private ExampleId(Long value) {
+            this.value = value;
+        }
+
+        public static ExampleId of(Long value) {
+            return new ExampleId(value);
+        }
     }
 }

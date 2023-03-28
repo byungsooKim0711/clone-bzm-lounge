@@ -1,10 +1,12 @@
 package clone.bzm.lounge.example.application.port.in;
 
-import clone.bzm.lounge.example.adapter.in.web.dto.ExampleResponse;
+import clone.bzm.lounge.example.domain.Example;
 
 public interface ExampleSaveUseCase {
 
-    ExampleResponse saveExample(String name);
-    ExampleResponse deleteExample(String id);
-    ExampleResponse updateExample(String id, String name);
+    Example saveExample(String name);
+
+    Example deleteExample(Long id);
+
+    Example updateExample(Long id, String name);
 }

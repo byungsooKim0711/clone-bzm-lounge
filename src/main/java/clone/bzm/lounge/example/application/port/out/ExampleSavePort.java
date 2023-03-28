@@ -6,5 +6,7 @@ public interface ExampleSavePort {
 
     Example save(Example example);
 
-    Example deleteById(String id);
+    void deleteById(Long id);
+
+    Example updateById(Long id, String name);
 }

@@ -1,11 +1,12 @@
 package clone.bzm.lounge.example.application.port.in;
 
-import clone.bzm.lounge.example.adapter.in.web.dto.ExampleResponse;
+import clone.bzm.lounge.example.domain.Example;
 
 import java.util.List;
 
 public interface ExampleLoadUseCase {
 
-    List<ExampleResponse> findExample();
-    ExampleResponse findExample(String id);
+    List<Example> findExample();
+
+    Example findExample(Long id);
 }

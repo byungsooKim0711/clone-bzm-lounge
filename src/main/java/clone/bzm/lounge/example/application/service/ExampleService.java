@@ -1,6 +1,5 @@
 package clone.bzm.lounge.example.application.service;
 
-import clone.bzm.lounge.example.adapter.in.web.dto.ExampleResponse;
 import clone.bzm.lounge.example.application.port.in.ExampleLoadUseCase;
 import clone.bzm.lounge.example.application.port.in.ExampleSaveUseCase;
 import clone.bzm.lounge.example.application.port.out.ExampleLoadPort;
@@ -8,6 +7,7 @@ import clone.bzm.lounge.example.application.port.out.ExampleSavePort;
 import clone.bzm.lounge.example.domain.Example;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,46 +18,36 @@ public class ExampleService implements ExampleLoadUseCase, ExampleSaveUseCase {
     private final ExampleLoadPort exampleLoadPort;
     private final ExampleSavePort exampleSavePort;
 
+    @Transactional(readOnly = true)
     @Override
-    public List<ExampleResponse> findExample() {
-        List<Example> selected = exampleLoadPort.findAll();
-
-        return ExampleResponse.of(selected);
+    public List<Example> findExample() {
+        return exampleLoadPort.findAll();
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public ExampleResponse findExample(String id) {
-        Example selected = exampleLoadPort.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException(String.format("Not found id. %s", id)));
-
-        return ExampleResponse.of(selected);
+    public Example findExample(Long id) {
+        return exampleLoadPort.findById(id);
     }
 
+    @Transactional
     @Override
-    public ExampleResponse saveExample(String name) {
-        Example saved = exampleSavePort.save(Example.from(name));
-
-        return ExampleResponse.of(saved);
+    public Example saveExample(String name) {
+        return exampleSavePort.save(Example.withoutId(name));
     }
 
+    @Transactional
     @Override
-    public ExampleResponse deleteExample(String id) {
-        Example selected = exampleLoadPort.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException(String.format("Not found id. %s", id)));
+    public Example deleteExample(Long id) {
+        Example selected = exampleLoadPort.findById(id);
+        exampleSavePort.deleteById(selected.getId().getValue());
 
-        Example deleted = exampleSavePort.deleteById(selected.getId());
-
-        return ExampleResponse.of(deleted);
+        return selected;
     }
 
+    @Transactional
     @Override
-    public ExampleResponse updateExample(String id, String name) {
-        Example selected = exampleLoadPort.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException(String.format("Not found id. %s", id)));
-
-        selected.updateName(name);
-        Example updated = exampleSavePort.save(selected);
-
-        return ExampleResponse.of(updated);
+    public Example updateExample(Long id, String name) {
+        return exampleSavePort.updateById(id, name);
     }
 }

@@ -1,4 +1,4 @@
-package clone.bzm.lounge.example.adapter.in.web.dto;
+package clone.bzm.lounge.example.adapter.in.web;
 
 import clone.bzm.lounge.example.domain.Example;
 import lombok.Builder;
@@ -8,26 +8,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
-public class ExampleResponse {
+class ExampleResponse {
 
-    private String id;
+    private Long id;
 
     private String name;
 
     @Builder
-    protected ExampleResponse(String id, String name) {
+    ExampleResponse(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public static ExampleResponse of(Example example) {
+    static ExampleResponse of(Example example) {
         return ExampleResponse.builder()
-                .id(example.getId())
+                .id(example.getId().getValue())
                 .name(example.getName())
                 .build();
     }
 
-    public static List<ExampleResponse> of(List<Example> examples) {
+    static List<ExampleResponse> of(List<Example> examples) {
         return examples.stream()
                 .map(ExampleResponse::of)
                 .collect(Collectors.toList());
