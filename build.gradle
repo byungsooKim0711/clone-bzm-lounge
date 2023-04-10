@@ -30,6 +30,7 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     runtimeOnly 'com.h2database:h2'
+    testImplementation 'com.tngtech.archunit:archunit-junit5:1.0.0'
 }
 
 tasks.named('test') {

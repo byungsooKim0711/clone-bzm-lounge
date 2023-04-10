@@ -4,5 +4,5 @@ import clone.bzm.lounge.user.domain.UserInfo;
 
 public interface UserSavePort {
 
-    UserInfo signIn(UserInfo userInfo);
+    UserInfo signUp(UserInfo userInfo);
 }
