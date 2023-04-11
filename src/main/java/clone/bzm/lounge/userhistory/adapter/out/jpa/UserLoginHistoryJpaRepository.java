@@ -1,4 +1,4 @@
-package clone.bzm.lounge.user.adapter.out.jpa;
+package clone.bzm.lounge.userhistory.adapter.out.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

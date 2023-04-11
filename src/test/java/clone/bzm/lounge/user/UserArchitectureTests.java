@@ -15,8 +15,9 @@ public class UserArchitectureTests {
                     .domainModels("clone.bzm.lounge.user.domain..")
                     .domainServices("clone.bzm.lounge.user.application.service..")
                     .applicationServices("clone.bzm.lounge.user.application..")
-                    .adapter("rest", "clone.bzm.lounge.user.adapter.in.rest..")
-                    .adapter("jpa", "clone.bzm.lounge.user.adapter.out.jpa..")
+                    .adapter("in-rest", "clone.bzm.lounge.user.adapter.in.rest..")
+                    .adapter("out-jpa", "clone.bzm.lounge.user.adapter.out.jpa..")
+                    .adapter("out-event", "clone.bzm.lounge.user.adapter.out.event..")
             ;
 
 }

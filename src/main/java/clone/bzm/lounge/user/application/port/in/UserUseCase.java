@@ -1,20 +1,20 @@
 package clone.bzm.lounge.user.application.port.in;
 
+import clone.bzm.lounge.user.application.port.in.command.SignInCommand;
+import clone.bzm.lounge.user.application.port.in.command.SignUpCommand;
 import clone.bzm.lounge.user.domain.UserInfo;
-import jakarta.validation.constraints.NotEmpty;
 
 public interface UserUseCase {
-
 
     /**
      * 가입
      */
-    UserInfo signUp(SignUpUserCommand command);
+    UserInfo signUp(SignUpCommand command);
 
     /**
      * 로그인
      */
-    void signIn();
+    UserInfo signIn(SignInCommand command);
 
     /**
      * 로그아웃
@@ -25,11 +25,4 @@ public interface UserUseCase {
      * 비밀번호 변경
      */
     void changePassword();
-
-    record SignUpUserCommand(
-            @NotEmpty String email,
-            @NotEmpty String plainPassword,
-            @NotEmpty String name,
-            @NotEmpty String phoneNumber) {
-    }
 }

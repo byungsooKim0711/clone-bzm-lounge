@@ -1,5 +1,6 @@
 package clone.bzm.lounge.user.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 
 @Getter
@@ -9,6 +10,7 @@ public class UserInfo {
 
     private String email;
 
+    @JsonIgnore
     private String securePassword;
 
     private String name;
@@ -17,8 +19,12 @@ public class UserInfo {
 
     private String status;
 
-
-    protected UserInfo(Long id, String email, String securePassword, String name, String phoneNumber, String status) {
+    protected UserInfo(Long id,
+                       String email,
+                       String securePassword,
+                       String name,
+                       String phoneNumber,
+                       String status) {
         this.id = id;
         this.email = email;
         this.securePassword = securePassword;
@@ -29,13 +35,14 @@ public class UserInfo {
 
     public static UserInfo withId(Long id,
                                   String email,
+                                  String securePassword,
                                   String name,
                                   String phoneNumber,
                                   String status) {
-        return new UserInfo(id, email, null, name, phoneNumber, status);
+        return new UserInfo(id, email, securePassword, name, phoneNumber, status);
     }
 
-    public static UserInfo signIn(String email,
+    public static UserInfo signUp(String email,
                                   String securePassword,
                                   String name,
                                   String phoneNumber) {

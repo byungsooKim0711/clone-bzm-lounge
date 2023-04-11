@@ -1,4 +1,4 @@
-package clone.bzm.lounge.user.adapter.out.jpa;
+package clone.bzm.lounge.userhistory.adapter.out.jpa;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,17 +15,16 @@ class UserLoginHistoryJpaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /** 로그인 한 ID */
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_user_login_history_to_user"))
-    private UserJpaEntity user;
+    /** 로그인 한 유저 ID */
+    @Column(name = "sign_in_user_id", nullable = false)
+    private Long signInUserId;
 
     /** OS/기기 등 */
-    @Column(name = "device", nullable = false, length = 30)
+    @Column(name = "device", nullable = false, length = 255)
     private String device;
 
     /** 접속 IP */
-    @Column(name = "ip", nullable = false, length = 15)
+    @Column(name = "ip", nullable = false, length = 39)
     private String ip;
 
     /** 서비스 URL? */
@@ -44,8 +43,8 @@ class UserLoginHistoryJpaEntity {
         /* empty */
     }
 
-    protected UserLoginHistoryJpaEntity(UserJpaEntity user, String device, String ip, String service, String type) {
-        this.user = user;
+    protected UserLoginHistoryJpaEntity(Long signInUserId, String device, String ip, String service, String type) {
+        this.signInUserId = signInUserId;
         this.device = device;
         this.ip = ip;
         this.service = service;
@@ -53,11 +52,11 @@ class UserLoginHistoryJpaEntity {
         this.loginAt = LocalDateTime.now();
     }
 
-    public static UserLoginHistoryJpaEntity from(UserJpaEntity user,
+    public static UserLoginHistoryJpaEntity from(Long signInUserId,
                                                  String device,
                                                  String ip,
                                                  String service,
                                                  String type) {
-        return new UserLoginHistoryJpaEntity(user, device,ip, service,type);
+        return new UserLoginHistoryJpaEntity(signInUserId, device,ip, service,type);
     }
 }

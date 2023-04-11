@@ -16,6 +16,7 @@ class UserMapper {
         return UserInfo.withId(
                 entity.getId(),
                 entity.getEmail().getAddress(),
+                entity.getPassword(),
                 entity.getName(),
                 entity.getPhoneNumber(),
                 entity.getStatus().name());

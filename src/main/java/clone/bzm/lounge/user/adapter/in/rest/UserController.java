@@ -1,10 +1,14 @@
 package clone.bzm.lounge.user.adapter.in.rest;
 
 import clone.bzm.lounge.user.adapter.in.rest.dto.UserResponse;
+import clone.bzm.lounge.user.adapter.in.rest.dto.UserSignInRequest;
 import clone.bzm.lounge.user.adapter.in.rest.dto.UserSignUpRequest;
+import clone.bzm.lounge.user.adapter.in.rest.util.ServletRequestHelper;
 import clone.bzm.lounge.user.application.port.in.UserUseCase;
-import clone.bzm.lounge.user.application.port.in.UserUseCase.SignUpUserCommand;
+import clone.bzm.lounge.user.application.port.in.command.SignInCommand;
+import clone.bzm.lounge.user.application.port.in.command.SignUpCommand;
 import clone.bzm.lounge.user.domain.UserInfo;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +22,11 @@ class UserController {
 
     private final UserUseCase useCase;
 
+    /** 회원가입 */
     @PostMapping("/api/v1/user/sign-up")
     ResponseEntity<UserResponse> signUp(@RequestBody @Valid UserSignUpRequest request) {
 
-        SignUpUserCommand command = new SignUpUserCommand(
+        SignUpCommand command = new SignUpCommand(
                 request.getEmail(),
                 request.getPassword(),
                 request.getName(),
@@ -33,5 +38,30 @@ class UserController {
         return ResponseEntity.ok(
                 UserResponse.of(registeredUser)
         );
+    }
+
+    /** 로그인 */
+    @PostMapping("/api/v1/user/sign-in")
+    ResponseEntity<UserResponse> signIn(@RequestBody @Valid UserSignInRequest request,
+                                        HttpServletRequest servletRequest) {
+
+        SignInCommand command = new SignInCommand(
+                request.getEmail(),
+                request.getPassword(),
+                ServletRequestHelper.getRemoteIp(servletRequest),
+                ServletRequestHelper.getUserAgent(servletRequest)
+        );
+
+        UserInfo signInUser = useCase.signIn(command);
+
+        return ResponseEntity.ok(
+                UserResponse.of(signInUser)
+        );
+    }
+
+    /** QR 로그인 */
+    @PostMapping("/api/v1/user/sign-in-qr")
+    ResponseEntity<UserResponse> signInQr() {
+        throw new UnsupportedOperationException("//todo:");
     }
 }
