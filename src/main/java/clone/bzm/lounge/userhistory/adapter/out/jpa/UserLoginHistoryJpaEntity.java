@@ -7,7 +7,11 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity(name = "tb_user_login_history")
-@Table()
+@Table(
+        indexes = {
+                @Index(name = "idx_sign_in_user_id_on_user_login_history", columnList = "sign_in_user_id")
+        }
+)
 class UserLoginHistoryJpaEntity {
 
     /** PK */
