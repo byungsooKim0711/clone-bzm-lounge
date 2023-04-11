@@ -1,6 +1,6 @@
 package clone.bzm.lounge.user.adapter.in.rest.dto;
 
-import clone.bzm.lounge.user.domain.UserInfo;
+import clone.bzm.lounge.user.domain.User;
 
 public record UserResponse(
         Long id,
@@ -9,17 +9,17 @@ public record UserResponse(
         String phoneNumber,
         String status) {
 
-    public static UserResponse of(UserInfo userInfo) {
+    public static UserResponse of(User user) {
         return new UserResponse(
-                userInfo.getId(),
-                userInfo.getEmail(),
-                userInfo.getName(),
-                userInfo.getPhoneNumber(),
-                userInfo.getStatus()
+                user.getId(),
+                user.getEmail(),
+                user.getName(),
+                user.getPhoneNumber(),
+                user.getStatus()
         );
     }
 
-    public static UserResponse maskingOf(UserInfo userInfo) {
+    public static UserResponse maskingOf(User user) {
         throw new UnsupportedOperationException("//todo: ");
     }
 }

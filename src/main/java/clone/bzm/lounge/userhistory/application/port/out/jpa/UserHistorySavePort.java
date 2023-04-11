@@ -1,8 +1,8 @@
 package clone.bzm.lounge.userhistory.application.port.out.jpa;
 
-import clone.bzm.lounge.userhistory.domain.UserHistoryInfo;
+import clone.bzm.lounge.userhistory.domain.UserLoginHistory;
 
 public interface UserHistorySavePort {
 
-    UserHistoryInfo save(UserHistoryInfo userHistory);
+    UserLoginHistory save(UserLoginHistory userLoginHistory);
 }

@@ -2,7 +2,7 @@ package clone.bzm.lounge.user.adapter.out.jpa;
 
 import clone.bzm.lounge.user.application.port.out.jpa.UserLoadPort;
 import clone.bzm.lounge.user.application.port.out.jpa.UserSavePort;
-import clone.bzm.lounge.user.domain.UserInfo;
+import clone.bzm.lounge.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,23 +13,23 @@ public class UserJpaAdapter implements UserLoadPort, UserSavePort {
     private final UserJpaRepository userJpaRepository;
 
     @Override
-    public UserInfo findByEmail(String address) {
+    public User findByEmail(String address) {
         return userJpaRepository.findByEmail(UserEmail.of(address))
                 .map(UserMapper::mapToDomainEntity)
                 .orElseThrow(RuntimeException::new);
     }
 
     @Override
-    public UserInfo findById(Long id) {
+    public User findById(Long id) {
         return userJpaRepository.findById(id)
                 .map(UserMapper::mapToDomainEntity)
                 .orElseThrow(RuntimeException::new);
     }
 
     @Override
-    public UserInfo signUp(UserInfo userInfo) {
+    public User signUp(User user) {
         UserJpaEntity registeredUser = userJpaRepository.save(
-                UserMapper.mapToJpaEntity(userInfo)
+                UserMapper.mapToJpaEntity(user)
         );
 
         return UserMapper.mapToDomainEntity(registeredUser);

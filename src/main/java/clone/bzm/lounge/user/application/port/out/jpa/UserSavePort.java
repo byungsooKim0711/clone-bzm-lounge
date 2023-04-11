@@ -1,8 +1,8 @@
 package clone.bzm.lounge.user.application.port.out.jpa;
 
-import clone.bzm.lounge.user.domain.UserInfo;
+import clone.bzm.lounge.user.domain.User;
 
 public interface UserSavePort {
 
-    UserInfo signUp(UserInfo userInfo);
+    User signUp(User user);
 }

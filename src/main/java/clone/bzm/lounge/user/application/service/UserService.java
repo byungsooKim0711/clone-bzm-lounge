@@ -8,7 +8,7 @@ import clone.bzm.lounge.user.application.port.out.event.SignInEvent.SignInType;
 import clone.bzm.lounge.user.application.port.out.event.UserEventPort;
 import clone.bzm.lounge.user.application.port.out.jpa.UserLoadPort;
 import clone.bzm.lounge.user.application.port.out.jpa.UserSavePort;
-import clone.bzm.lounge.user.domain.UserInfo;
+import clone.bzm.lounge.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,25 +23,25 @@ public class UserService implements UserUseCase {
 
     @Transactional
     @Override
-    public UserInfo signUp(SignUpCommand command) {
-        UserInfo userInfo = UserInfo.signUp(
+    public User signUp(SignUpCommand command) {
+        User user = User.signUp(
                 command.email(),
                 encryptPassword(command.plainPassword()),
                 command.name(),
                 command.phoneNumber()
         );
 
-        return userSavePort.signUp(userInfo);
+        return userSavePort.signUp(user);
     }
 
     @Transactional
     @Override
-    public UserInfo signIn(SignInCommand command) {
+    public User signIn(SignInCommand command) {
         // 유저 조회
-        UserInfo userInfo = userLoadPort.findByEmail(command.email());
+        User user = userLoadPort.findByEmail(command.email());
 
         // 패스워드 비교
-        boolean isMatchedPassword = isMatchedPassword(userInfo.getSecurePassword(), command.plainPassword());
+        boolean isMatchedPassword = isMatchedPassword(user.getSecurePassword(), command.plainPassword());
         if (!isMatchedPassword) {
             throw new RuntimeException("//todo: ");
         }
@@ -49,7 +49,7 @@ public class UserService implements UserUseCase {
         // 로그인 이벤트 발행
         userEventPort.publishSignInEvent(SignInEvent.builder()
                         .source(this)
-                        .signInUserId(userInfo.getId())
+                        .signInUserId(user.getId())
                         .ip(command.ip())
                         .device(command.device())
                         .service("clone-bzm-lounge.kakao.com")
@@ -58,7 +58,7 @@ public class UserService implements UserUseCase {
         );
 
         // 리턴
-        return userInfo;
+        return user;
     }
 
     @Override

@@ -7,7 +7,7 @@ import com.tngtech.archunit.lang.ArchRule;
 import static com.tngtech.archunit.library.Architectures.onionArchitecture;
 
 @AnalyzeClasses(packages = "clone.bzm.lounge.userhistory")
-public class UserHistoryArchitectureTests {
+public class UserLoginHistoryArchitectureTests {
 
     @ArchTest
     static final ArchRule testOnionArchitecture =

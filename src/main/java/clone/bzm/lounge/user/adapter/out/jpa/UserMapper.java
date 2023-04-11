@@ -1,19 +1,19 @@
 package clone.bzm.lounge.user.adapter.out.jpa;
 
-import clone.bzm.lounge.user.domain.UserInfo;
+import clone.bzm.lounge.user.domain.User;
 
 class UserMapper {
 
-    static UserJpaEntity mapToJpaEntity(UserInfo userInfo) {
+    static UserJpaEntity mapToJpaEntity(User user) {
         return UserJpaEntity.from(
-                UserEmail.of(userInfo.getEmail()),
-                userInfo.getSecurePassword(),
-                userInfo.getName(),
-                userInfo.getPhoneNumber());
+                UserEmail.of(user.getEmail()),
+                user.getSecurePassword(),
+                user.getName(),
+                user.getPhoneNumber());
     }
 
-    static UserInfo mapToDomainEntity(UserJpaEntity entity) {
-        return UserInfo.withId(
+    static User mapToDomainEntity(UserJpaEntity entity) {
+        return User.withId(
                 entity.getId(),
                 entity.getEmail().getAddress(),
                 entity.getPassword(),

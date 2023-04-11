@@ -7,7 +7,7 @@ import clone.bzm.lounge.user.adapter.in.rest.util.ServletRequestHelper;
 import clone.bzm.lounge.user.application.port.in.UserUseCase;
 import clone.bzm.lounge.user.application.port.in.command.SignInCommand;
 import clone.bzm.lounge.user.application.port.in.command.SignUpCommand;
-import clone.bzm.lounge.user.domain.UserInfo;
+import clone.bzm.lounge.user.domain.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ class UserController {
                 request.getPhoneNumber()
         );
 
-        UserInfo registeredUser = useCase.signUp(command);
+        User registeredUser = useCase.signUp(command);
 
         return ResponseEntity.ok(
                 UserResponse.of(registeredUser)
@@ -52,7 +52,7 @@ class UserController {
                 ServletRequestHelper.getUserAgent(servletRequest)
         );
 
-        UserInfo signInUser = useCase.signIn(command);
+        User signInUser = useCase.signIn(command);
 
         return ResponseEntity.ok(
                 UserResponse.of(signInUser)

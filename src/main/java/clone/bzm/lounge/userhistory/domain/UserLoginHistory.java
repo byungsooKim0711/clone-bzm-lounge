@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class UserHistoryInfo {
+public class UserLoginHistory {
 
     private Long signInUserId;
 
@@ -17,7 +17,7 @@ public class UserHistoryInfo {
     private String type;
 
     @Builder
-    public UserHistoryInfo(Long signInUserId, String device, String ip, String service, String type) {
+    public UserLoginHistory(Long signInUserId, String device, String ip, String service, String type) {
         this.signInUserId = signInUserId;
         this.device = device;
         this.ip = ip;
