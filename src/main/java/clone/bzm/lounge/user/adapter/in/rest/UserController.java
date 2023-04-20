@@ -27,10 +27,10 @@ class UserController {
     ResponseEntity<UserResponse> signUp(@RequestBody @Valid UserSignUpRequest request) {
 
         SignUpCommand command = new SignUpCommand(
-                request.getEmail(),
-                request.getPassword(),
-                request.getName(),
-                request.getPhoneNumber()
+                request.email(),
+                request.password(),
+                request.name(),
+                request.phoneNumber()
         );
 
         User registeredUser = useCase.signUp(command);
@@ -46,8 +46,8 @@ class UserController {
                                         HttpServletRequest servletRequest) {
 
         SignInCommand command = new SignInCommand(
-                request.getEmail(),
-                request.getPassword(),
+                request.email(),
+                request.password(),
                 ServletRequestHelper.getRemoteIp(servletRequest),
                 ServletRequestHelper.getUserAgent(servletRequest)
         );
