@@ -1,4 +1,4 @@
-package clone.bzm.lounge.configration;
+package clone.bzm.lounge.configration.async;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
