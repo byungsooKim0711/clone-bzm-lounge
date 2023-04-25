@@ -19,6 +19,8 @@ public class User {
 
     private String status;
 
+    private UserToken token;
+
     protected User(Long id,
                    String email,
                    String securePassword,
@@ -47,5 +49,9 @@ public class User {
                               String name,
                               String phoneNumber) {
         return new User(null, email, securePassword, name, phoneNumber, null);
+    }
+
+    public void addToken(UserToken token) {
+        this.token = token;
     }
 }

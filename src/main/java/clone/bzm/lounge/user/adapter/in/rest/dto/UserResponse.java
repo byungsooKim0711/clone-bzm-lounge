@@ -7,7 +7,8 @@ public record UserResponse(
         String email,
         String name,
         String phoneNumber,
-        String status) {
+        String status,
+        String token) {
 
     public static UserResponse of(User user) {
         return new UserResponse(
@@ -15,7 +16,8 @@ public record UserResponse(
                 user.getEmail(),
                 user.getName(),
                 user.getPhoneNumber(),
-                user.getStatus()
+                user.getStatus(),
+                user.getToken() == null ? null : user.getToken().accessToken()
         );
     }
 
