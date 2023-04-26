@@ -3,10 +3,8 @@ package clone.bzm.lounge.configration.security;
 import clone.bzm.lounge.user.domain.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
-import java.util.Base64;
 import java.util.Date;
 import java.util.Map;
 

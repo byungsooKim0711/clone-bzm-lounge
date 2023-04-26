@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
                 @Index(name = "idx_sign_in_user_id_on_user_login_history", columnList = "sign_in_user_id")
         }
 )
-class UserLoginHistoryJpaEntity {
+class UserSignInHistoryJpaEntity {
 
     /** PK */
     @Id
@@ -43,11 +43,11 @@ class UserLoginHistoryJpaEntity {
     @Column(name = "login_at", nullable = false)
     private LocalDateTime loginAt;
 
-    protected UserLoginHistoryJpaEntity() {
+    protected UserSignInHistoryJpaEntity() {
         /* empty */
     }
 
-    protected UserLoginHistoryJpaEntity(Long signInUserId, String device, String ip, String service, String type) {
+    protected UserSignInHistoryJpaEntity(Long signInUserId, String device, String ip, String service, String type) {
         this.signInUserId = signInUserId;
         this.device = device;
         this.ip = ip;
@@ -56,11 +56,11 @@ class UserLoginHistoryJpaEntity {
         this.loginAt = LocalDateTime.now();
     }
 
-    public static UserLoginHistoryJpaEntity from(Long signInUserId,
-                                                 String device,
-                                                 String ip,
-                                                 String service,
-                                                 String type) {
-        return new UserLoginHistoryJpaEntity(signInUserId, device,ip, service,type);
+    public static UserSignInHistoryJpaEntity from(Long signInUserId,
+                                                  String device,
+                                                  String ip,
+                                                  String service,
+                                                  String type) {
+        return new UserSignInHistoryJpaEntity(signInUserId, device,ip, service,type);
     }
 }

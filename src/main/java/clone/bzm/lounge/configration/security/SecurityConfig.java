@@ -7,8 +7,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @RequiredArgsConstructor
@@ -25,34 +29,62 @@ public class SecurityConfig {
     public WebSecurityCustomizer configure() {
         return web -> web
                 .ignoring()
-                .requestMatchers(
-                        "/api/v1/user/sign-up",
-                        "/api/v1/user/sign-in",
-                        "/api/v1/user/sign-in-qr",
-                        "/api/example/**"
-                );
+                .requestMatchers(toH2Console());
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.httpBasic().disable();
-        http.exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .accessDeniedHandler(jwtAccessDeniedHandler)
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(STATELESS)
-                .and()
-                .authorizeHttpRequests()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .apply(new JwtSecurityConfig(mapper));
 
-        http.headers().frameOptions().disable();
+        // @formatter:off
+        http
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers(toH2Console())
+                        .disable()
+                )
+
+                .headers(headers -> headers.frameOptions()
+                        .sameOrigin()
+                )
+
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers("/api/v1/user/sign-up").permitAll()
+                        .requestMatchers("/api/v1/user/sign-in").permitAll()
+                        .requestMatchers("/api/v1/user/sign-in-qr").permitAll()
+                        .requestMatchers("/api/example").permitAll()
+                        .anyRequest()
+                        .authenticated()
+                )
+
+                .exceptionHandling(handling -> handling
+                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                        .accessDeniedHandler(jwtAccessDeniedHandler)
+                )
+
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(STATELESS)
+                )
+
+                .logout(logout -> logout
+                        .logoutUrl("/api/v1/user/sign-out")
+                        .addLogoutHandler((request, response, authentication) -> {
+                            System.out.println("#####: logout... " + authentication);
+                        })
+                        .logoutSuccessHandler((request, response, authentication) -> {
+                            System.out.println("#####: logout... " + authentication);
+                            SecurityContextHolder.clearContext();
+                        })
+                )
+
+                .apply(new JwtSecurityConfig(mapper))
+        ;
+
+        // @formatter:on
+
         return http.build();
     }
-    
-    // TODO: PasswordEncoder, 비밀번호 저장 암호화
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }

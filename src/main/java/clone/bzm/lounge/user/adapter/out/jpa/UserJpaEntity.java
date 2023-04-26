@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 @Getter
 @Entity(name = "tb_user")
 @Table(
-        indexes = {
-                @Index(name = "unq_user_on_email", columnList = "email", unique = true)
+        uniqueConstraints = {
+                @UniqueConstraint(name = "unq_user_on_email", columnNames = {"email"})
         }
 )
 class UserJpaEntity {
@@ -57,7 +57,7 @@ class UserJpaEntity {
         // check validation
 
         this.email = email;
-        this.password = passwordEncoding(password);
+        this.password = password;
         this.name = name;
         this.phoneNumber = phoneNumber;
 
@@ -70,7 +70,8 @@ class UserJpaEntity {
         return new UserJpaEntity(email, password, name, phoneNumber);
     }
 
-    private String passwordEncoding(String credentials) {
-        return credentials;
+    public UserJpaEntity changePassword(String securedPassword) {
+        this.password = securedPassword;
+        return this;
     }
 }

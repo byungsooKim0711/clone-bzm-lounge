@@ -1,6 +1,6 @@
 package clone.bzm.lounge.configration.security;
 
-import clone.bzm.lounge.configration.exception.BzmAuthenticationException;
+import clone.bzm.lounge.configration.exception.AuthenticationException;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,7 @@ public class BzmMemberMethodArgumentResolver implements HandlerMethodArgumentRes
 
         UsernamePasswordAuthenticationToken principal = (UsernamePasswordAuthenticationToken) request.getUserPrincipal();
         if (principal == null || principal.getPrincipal() == null) {
-            throw new BzmAuthenticationException("Unknown credentials.");
+            throw new AuthenticationException("Unknown credentials.");
         }
 
         return ((BzmUserDetails) principal.getPrincipal()).getAuthentication();

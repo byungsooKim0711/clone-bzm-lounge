@@ -1,8 +1,8 @@
 package clone.bzm.lounge.userhistory.adapter.in.event;
 
 import clone.bzm.lounge.user.application.port.out.event.SignInEvent;
-import clone.bzm.lounge.userhistory.application.port.in.UserHistoryUseCase;
-import clone.bzm.lounge.userhistory.application.port.in.command.UserHistoryCommand;
+import clone.bzm.lounge.userhistory.application.port.in.UserSignInHistoryUseCase;
+import clone.bzm.lounge.userhistory.application.port.in.command.UserSignInHistoryCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -13,13 +13,13 @@ import org.springframework.transaction.event.TransactionalEventListener;
 @Component
 class UserSignInEventConsumer {
 
-    private final UserHistoryUseCase useCase;
+    private final UserSignInHistoryUseCase useCase;
 
     @Async
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void onApplicationEvent(SignInEvent event) {
         useCase.saveSignInHistory(
-                new UserHistoryCommand(
+                new UserSignInHistoryCommand(
                         event.getSignInUserId(),
                         event.getDevice(),
                         event.getIp(),

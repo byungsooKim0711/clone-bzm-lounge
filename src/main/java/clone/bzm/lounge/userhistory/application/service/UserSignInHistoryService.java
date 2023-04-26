@@ -1,24 +1,24 @@
 package clone.bzm.lounge.userhistory.application.service;
 
-import clone.bzm.lounge.userhistory.application.port.in.UserHistoryUseCase;
-import clone.bzm.lounge.userhistory.application.port.in.command.UserHistoryCommand;
-import clone.bzm.lounge.userhistory.application.port.out.jpa.UserHistorySavePort;
-import clone.bzm.lounge.userhistory.domain.UserLoginHistory;
+import clone.bzm.lounge.userhistory.application.port.in.UserSignInHistoryUseCase;
+import clone.bzm.lounge.userhistory.application.port.in.command.UserSignInHistoryCommand;
+import clone.bzm.lounge.userhistory.application.port.out.jpa.UserSignInHistorySavePort;
+import clone.bzm.lounge.userhistory.domain.UserSignInHistory;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class UserHistoryService implements UserHistoryUseCase {
+public class UserSignInHistoryService implements UserSignInHistoryUseCase {
 
-    private final UserHistorySavePort historySavePort;
+    private final UserSignInHistorySavePort historySavePort;
 
     @Transactional
     @Override
-    public void saveSignInHistory(UserHistoryCommand command) {
+    public void saveSignInHistory(UserSignInHistoryCommand command) {
         historySavePort.save(
-                UserLoginHistory.builder()
+                UserSignInHistory.builder()
                         .signInUserId(command.signInUserId())
                         .device(command.device())
                         .ip(command.ip())

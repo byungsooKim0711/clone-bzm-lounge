@@ -14,7 +14,11 @@ public class UserArchitectureTests {
             onionArchitecture()
                     .domainModels("clone.bzm.lounge.user.domain..")
                     .domainServices("clone.bzm.lounge.user.application.service..")
-                    .applicationServices("clone.bzm.lounge.user.application..")
+                    .applicationServices(
+                            "clone.bzm.lounge.user.application..",
+                            "clone.bzm.lounge.common..",
+                            "clone.bzm.lounge.configration.."
+                    )
                     .adapter("in-rest", "clone.bzm.lounge.user.adapter.in.rest..")
                     .adapter("out-jpa", "clone.bzm.lounge.user.adapter.out.jpa..")
                     .adapter("out-event", "clone.bzm.lounge.user.adapter.out.event..")

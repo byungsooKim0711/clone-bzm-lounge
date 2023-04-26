@@ -1,6 +1,5 @@
 package clone.bzm.lounge.configration.security;
 
-import clone.bzm.lounge.configration.exception.BzmAuthenticationException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.FilterChain;
@@ -32,7 +31,8 @@ public class JwtFilter extends OncePerRequestFilter {
         String bearerJwt = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         if (StringUtils.isBlank(bearerJwt)) {
-            throw new BzmAuthenticationException("can not be blank jwt.");
+            chain.doFilter(request, response);
+            return;
         }
 
         String jwt = null;

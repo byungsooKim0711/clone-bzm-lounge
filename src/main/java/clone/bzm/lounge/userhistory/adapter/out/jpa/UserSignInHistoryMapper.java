@@ -1,11 +1,11 @@
 package clone.bzm.lounge.userhistory.adapter.out.jpa;
 
-import clone.bzm.lounge.userhistory.domain.UserLoginHistory;
+import clone.bzm.lounge.userhistory.domain.UserSignInHistory;
 
-class UserHistoryMapper {
+class UserSignInHistoryMapper {
 
-    static UserLoginHistoryJpaEntity mapToJpaEntity(UserLoginHistory domain) {
-        return UserLoginHistoryJpaEntity.from(
+    static UserSignInHistoryJpaEntity mapToJpaEntity(UserSignInHistory domain) {
+        return UserSignInHistoryJpaEntity.from(
                 domain.getSignInUserId(),
                 domain.getDevice(),
                 domain.getIp(),
@@ -14,8 +14,8 @@ class UserHistoryMapper {
         );
     }
 
-    static UserLoginHistory mapToDomainEntity(UserLoginHistoryJpaEntity entity) {
-        return UserLoginHistory.builder()
+    static UserSignInHistory mapToDomainEntity(UserSignInHistoryJpaEntity entity) {
+        return UserSignInHistory.builder()
                 .signInUserId(entity.getSignInUserId())
                 .ip(entity.getIp())
                 .device(entity.getDevice())

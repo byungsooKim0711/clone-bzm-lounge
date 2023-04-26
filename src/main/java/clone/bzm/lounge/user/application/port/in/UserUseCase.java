@@ -1,5 +1,6 @@
 package clone.bzm.lounge.user.application.port.in;
 
+import clone.bzm.lounge.user.application.port.in.command.ChangePasswordCommand;
 import clone.bzm.lounge.user.application.port.in.command.SignInCommand;
 import clone.bzm.lounge.user.application.port.in.command.SignUpCommand;
 import clone.bzm.lounge.user.domain.User;
@@ -24,5 +25,5 @@ public interface UserUseCase {
     /**
      * 비밀번호 변경
      */
-    void changePassword();
+    void changePassword(ChangePasswordCommand command);
 }

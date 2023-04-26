@@ -1,9 +1,12 @@
 package clone.bzm.lounge.user.application.service;
 
+import clone.bzm.lounge.configration.exception.DuplicateUserException;
 import clone.bzm.lounge.configration.security.JwtProvider;
 import clone.bzm.lounge.user.application.port.in.UserUseCase;
+import clone.bzm.lounge.user.application.port.in.command.ChangePasswordCommand;
 import clone.bzm.lounge.user.application.port.in.command.SignInCommand;
 import clone.bzm.lounge.user.application.port.in.command.SignUpCommand;
+import clone.bzm.lounge.user.application.port.out.event.PasswordChangeEvent;
 import clone.bzm.lounge.user.application.port.out.event.SignInEvent;
 import clone.bzm.lounge.user.application.port.out.event.SignInEvent.SignInType;
 import clone.bzm.lounge.user.application.port.out.event.UserEventPort;
@@ -14,6 +17,8 @@ import clone.bzm.lounge.user.domain.UserToken;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
 @Service
@@ -26,27 +31,19 @@ public class UserService implements UserUseCase {
     @Transactional
     @Override
     public User signUp(SignUpCommand command) {
-        User user = User.signUp(
-                command.email(),
-                encryptPassword(command.plainPassword()),
-                command.name(),
-                command.phoneNumber()
-        );
+        boolean exists = userLoadPort.existsByEmail(command.email());
+        if (exists) {
+            throw new DuplicateUserException(command.email());
+        }
 
-        return userSavePort.signUp(user);
+        return userSavePort.signUp(command);
     }
 
     @Transactional
     @Override
     public User signIn(SignInCommand command) {
         // 유저 조회
-        User user = userLoadPort.findByEmail(command.email());
-
-        // 패스워드 비교
-        boolean isMatchedPassword = isMatchedPassword(user.getSecurePassword(), command.plainPassword());
-        if (!isMatchedPassword) {
-            throw new RuntimeException("//todo: ");
-        }
+        User user = userLoadPort.findUser(command.email(), command.plainPassword());
 
         // 로그인 이벤트 발행
         userEventPort.publishSignInEvent(SignInEvent.builder()
@@ -72,18 +69,17 @@ public class UserService implements UserUseCase {
 
     }
 
+    @Transactional
     @Override
-    public void changePassword() {
+    public void changePassword(ChangePasswordCommand command) {
+        User user = userSavePort.changePassword(command);
 
-    }
-
-    private String encryptPassword(String plainPassword) {
-        String securePassword = plainPassword;
-
-        return securePassword;
-    }
-
-    private boolean isMatchedPassword(String securePassword, String plainPassword) {
-        return securePassword.equals(plainPassword);
+        userEventPort.publishPasswordEvent(PasswordChangeEvent.builder()
+                        .source(this)
+                        .userId(user.getId())
+                        .sessionClear(command.sessionClear())
+                        .modifiedAt(LocalDateTime.now())
+                .build()
+        );
     }
 }
