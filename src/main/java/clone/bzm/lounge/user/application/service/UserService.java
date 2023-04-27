@@ -82,4 +82,10 @@ public class UserService implements UserUseCase {
                 .build()
         );
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public User me(Long id) {
+        return userLoadPort.findById(id);
+    }
 }

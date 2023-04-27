@@ -9,7 +9,8 @@ class UserMapper {
                 UserEmail.of(user.getEmail()),
                 user.getSecurePassword(),
                 user.getName(),
-                user.getPhoneNumber());
+                user.getPhoneNumber()
+        );
     }
 
     static User mapToDomainEntity(UserJpaEntity entity) {
@@ -19,6 +20,9 @@ class UserMapper {
                 entity.getPassword(),
                 entity.getName(),
                 entity.getPhoneNumber(),
-                entity.getStatus().name());
+                entity.getStatus().name(),
+                entity.getCreatedAt(),
+                entity.getModifiedAt()
+        );
     }
 }

@@ -26,4 +26,6 @@ public interface UserUseCase {
      * 비밀번호 변경
      */
     void changePassword(ChangePasswordCommand command);
+
+    User me(Long id);
 }

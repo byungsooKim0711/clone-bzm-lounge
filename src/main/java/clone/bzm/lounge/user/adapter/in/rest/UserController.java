@@ -103,6 +103,11 @@ class UserController {
      */
     @GetMapping("/api/v1/user/me")
     ResponseEntity<ApiResult<UserResponse>> me(@BzmMember BzmUserAuthentication authentication) {
-        throw new UnsupportedOperationException("//todo:");
+        Long authenticatedUserId = authentication.id();
+        User myInfo = useCase.me(authenticatedUserId);
+
+        return ResponseEntity.ok(
+                succeed(UserResponse.of(myInfo))
+        );
     }
 }
