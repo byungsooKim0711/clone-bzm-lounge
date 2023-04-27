@@ -2,10 +2,12 @@ package clone.bzm.lounge.userhistory.adapter.out.jpa;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Getter
+@EntityListeners(AuditingEntityListener.class)
 @Entity(name = "tb_user_login_history")
 @Table(
         indexes = {
@@ -42,6 +44,10 @@ class UserSignInHistoryJpaEntity {
     /** 접속일시 */
     @Column(name = "login_at", nullable = false)
     private LocalDateTime loginAt;
+
+    /** 생성일시 */
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     protected UserSignInHistoryJpaEntity() {
         /* empty */

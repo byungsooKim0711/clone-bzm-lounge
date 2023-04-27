@@ -2,10 +2,13 @@ package clone.bzm.lounge.userhistory.adapter.out.jpa;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Getter
+@EntityListeners(AuditingEntityListener.class)
 @Entity(name = "tb_user_password_history")
 @Table(
         indexes = {
@@ -32,6 +35,10 @@ class UserPasswordHistoryJpaEntity {
      */
     @Column(name = "password_modified_at")
     private LocalDateTime passwordModifiedAt;
+
+    @CreatedDate
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     protected UserPasswordHistoryJpaEntity() {
         /* empty */

@@ -3,10 +3,14 @@ package clone.bzm.lounge.user.adapter.out.jpa;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Getter
+@EntityListeners(AuditingEntityListener.class)
 @Entity(name = "tb_user")
 @Table(
         uniqueConstraints = {
@@ -40,12 +44,14 @@ class UserJpaEntity {
     @Column(name = "status", nullable = false, length = 10)
     @Enumerated(EnumType.STRING)
     private UserStatus status;
-    
+
     /** 계정 생성일시 */
+    @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;
-    
+
     /** 계정 수정일시 */
+    @LastModifiedDate
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
 
@@ -62,8 +68,6 @@ class UserJpaEntity {
         this.phoneNumber = phoneNumber;
 
         this.status = UserStatus.ACTIVE;
-        this.createdAt = LocalDateTime.now();
-        this.modifiedAt = LocalDateTime.now();
     }
 
     public static UserJpaEntity from(UserEmail email, String password, String name, String phoneNumber) {
