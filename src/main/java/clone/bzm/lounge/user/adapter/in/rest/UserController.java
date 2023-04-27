@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import static clone.bzm.lounge.common.ApiResult.succeed;
+
 @RequiredArgsConstructor
 @RestController
 class UserController {
@@ -32,7 +34,7 @@ class UserController {
      * 회원가입
      */
     @PostMapping("/api/v1/user/sign-up")
-    ResponseEntity<UserResponse> signUp(@RequestBody @Valid UserSignUpRequest request) {
+    ResponseEntity<ApiResult<UserResponse>> signUp(@RequestBody @Valid UserSignUpRequest request) {
 
         SignUpCommand command = new SignUpCommand(
                 request.email(),
@@ -44,7 +46,7 @@ class UserController {
         User registeredUser = useCase.signUp(command);
 
         return ResponseEntity.ok(
-                UserResponse.of(registeredUser)
+                succeed(UserResponse.of(registeredUser))
         );
     }
 
@@ -52,8 +54,8 @@ class UserController {
      * 로그인
      */
     @PostMapping("/api/v1/user/sign-in")
-    ResponseEntity<UserResponse> signIn(@RequestBody @Valid UserSignInRequest request,
-                                        HttpServletRequest servletRequest) {
+    ResponseEntity<ApiResult<UserResponse>> signIn(@RequestBody @Valid UserSignInRequest request,
+                                                   HttpServletRequest servletRequest) {
 
         SignInCommand command = new SignInCommand(
                 request.email(),
@@ -65,7 +67,7 @@ class UserController {
         User signInUser = useCase.signIn(command);
 
         return ResponseEntity.ok(
-                UserResponse.of(signInUser)
+                succeed(UserResponse.of(signInUser))
         );
     }
 
@@ -73,7 +75,7 @@ class UserController {
      * QR 로그인
      */
     @PostMapping("/api/v1/user/sign-in-qr")
-    ResponseEntity<UserResponse> signInQr() {
+    ResponseEntity<ApiResult<UserResponse>> signInQr() {
         throw new UnsupportedOperationException("//todo:");
     }
 
@@ -93,14 +95,14 @@ class UserController {
 
         useCase.changePassword(command);
 
-        return ResponseEntity.ok(ApiResult.succeed());
+        return ResponseEntity.ok(succeed());
     }
 
     /**
      * 본인 정보 조회
      */
     @GetMapping("/api/v1/user/me")
-    ResponseEntity<UserResponse> me(@BzmMember BzmUserAuthentication authentication) {
+    ResponseEntity<ApiResult<UserResponse>> me(@BzmMember BzmUserAuthentication authentication) {
         throw new UnsupportedOperationException("//todo:");
     }
 }
