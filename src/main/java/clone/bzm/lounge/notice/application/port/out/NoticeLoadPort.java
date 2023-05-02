@@ -2,6 +2,7 @@ package clone.bzm.lounge.notice.application.port.out;
 
 import clone.bzm.lounge.notice.domain.Notice;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface NoticeLoadPort {
@@ -10,5 +11,5 @@ public interface NoticeLoadPort {
 
     List<Notice> findNotices();
 
-    List<Notice> findPopupNotices();
+    List<Notice> findPopupNotices(LocalDate now);
 }

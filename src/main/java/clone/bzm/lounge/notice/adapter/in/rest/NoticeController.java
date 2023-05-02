@@ -7,14 +7,18 @@ import clone.bzm.lounge.notice.application.port.in.command.NoticeCreateCommand;
 import clone.bzm.lounge.notice.domain.Notice;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpCookie;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
 import static clone.bzm.lounge.common.ApiResult.succeed;
+import static org.springframework.http.HttpHeaders.SET_COOKIE;
 
 @RequiredArgsConstructor
 @RestController
@@ -47,7 +51,28 @@ class NoticeController {
      */
     @GetMapping("/api/v1/notice/popup")
     ResponseEntity<ApiResult<List<?>>> popupNotice() {
-        throw new UnsupportedOperationException();
+        // todo: @CookieValue(value = "popupNotice", required = false) Cookie cookie 쿠키설계
+        return ResponseEntity.ok(
+                succeed(useCase.getPopupNotice(LocalDate.now()))
+        );
+    }
+
+    /**
+     * 팝업 공지사항 읽음처리
+     */
+    @PostMapping("/api/v1/notice/popup/{noticeId}")
+    ResponseEntity<ApiResult<Void>> readPopupNotice(@PathVariable Long noticeId) {
+        HttpCookie cookie = ResponseCookie.from("popupNotice", "" + noticeId)
+                .path("/")
+                .maxAge(60 * 60 * 24 * 30)
+                .httpOnly(true)
+                .secure(true)
+                .domain("localhost")
+                .build();
+
+        return ResponseEntity.ok()
+                .header(SET_COOKIE, cookie.toString())
+                .body(succeed());
     }
 
 
@@ -60,7 +85,10 @@ class NoticeController {
         NoticeCreateCommand command = new NoticeCreateCommand(
                 request.title(),
                 request.content(),
-                request.fix()
+                request.fix(),
+                request.popup(),
+                request.openDate(),
+                request.closeDate()
         );
 
         Notice notice = useCase.createNotice(command);

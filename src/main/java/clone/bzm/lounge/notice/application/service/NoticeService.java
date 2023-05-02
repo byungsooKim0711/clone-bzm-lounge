@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -32,20 +33,14 @@ class NoticeService implements NoticeUseCase {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Notice> getPopupNotice() {
-        return noticeLoadPort.findPopupNotices();
+    public List<Notice> getPopupNotice(LocalDate now) {
+        return noticeLoadPort.findPopupNotices(now);
     }
 
     @Transactional
     @Override
     public Notice createNotice(NoticeCreateCommand command) {
-        Notice notice = Notice.createNotice(
-                command.title(),
-                command.content(),
-                null,
-                null,
-                command.fix()
-        );
+        Notice notice = command.createNotice();
 
         return noticeSavePort.saveNotice(notice);
     }

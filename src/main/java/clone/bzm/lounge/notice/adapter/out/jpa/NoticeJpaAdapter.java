@@ -7,6 +7,7 @@ import clone.bzm.lounge.notice.domain.Notice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,13 +27,17 @@ class NoticeJpaAdapter implements NoticeSavePort, NoticeLoadPort {
     @Override
     public List<Notice> findNotices() {
         return repository.findAll()
-                .stream().map(NoticeMapper::mapToDomainEntity)
+                .stream()
+                .map(NoticeMapper::mapToDomainEntity)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<Notice> findPopupNotices() {
-        return null;
+    public List<Notice> findPopupNotices(LocalDate now) {
+        return repository.findByNoticeBetweenOpenDateAndCloseDateAndIsPopup(now)
+                .stream()
+                .map(NoticeMapper::mapToDomainEntity)
+                .collect(Collectors.toList());
     }
 
     @Override
