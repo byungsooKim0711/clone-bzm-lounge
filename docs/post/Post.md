@@ -14,11 +14,12 @@ Path: /api/post
 |content|Text|내용|
 |status|Text(1)|A: 정상|
 |~~type~~|~~Text(1)~~|~~Q(question)~~|
-|complete_date|Datetime|완료일자|
+|progress_status|Text(1)|진행 상태|
+|complete_at|Datetime|완료일자|
 |privacy|Boolean|개인정보 포함 여부|
 |category|Text|게시글 카테고리| 
-|created_date      | Datetime   | 생성일                                                    |
+|created_at      | Datetime   | 생성일                                                    |
 |created_by        | Text(32)   | 생성자                                                    |
-|modified_date     | Datetime   | 수정일                                                    |
+|modified_at     | Datetime   | 수정일                                                    |
 |modified_by       | Text(32)   | 수정자                                                    |
 
