@@ -18,6 +18,9 @@ public enum ResultCode {
     BAD_REQUEST("4000"),
     NOT_FOUND("4040"),
 
+    FILE_EMPTY_ERROR("5000"),
+    FILE_UPLOAD_ERROR("5001"),
+
     INTERNAL_SERVER_ERROR("9999"),
     ;
 
