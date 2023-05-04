@@ -5,13 +5,14 @@
 | 항목              | 타입       | 설명                                                      |
 | ----------------- | ---------- | --------------------------------------------------------- |
 | id                | Number     | PK                                                        |
-|file_name|Text|업로드된 파일 이름|
-|file_type|Text||
-|file_url|Text|파일 URL|
+|name|Text|업로드된 파일 이름|
+|type|Text||
+|path|Text||
+|url|Text|파일 URL|
 |status|Text(1)|A: 정상|
 |thumbnail_url|Text|썸네일 URL|
-|created_date      | Datetime   | 생성일                                                    |
-|created_by        | Text(32)   | 생성자                                                    |
+|created_at      | Datetime   | 생성일                                                    |
+|created_by        | Number   | 생성자                                                    |
 
 
 #### 게시글 첨부파일 (TB_POST_ATTACHMENT)
