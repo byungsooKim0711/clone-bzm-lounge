@@ -1,4 +1,4 @@
-package clone.bzm.lounge.configration.security;
+package clone.bzm.lounge.configuration.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

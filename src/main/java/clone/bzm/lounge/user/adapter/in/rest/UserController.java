@@ -1,8 +1,8 @@
 package clone.bzm.lounge.user.adapter.in.rest;
 
 import clone.bzm.lounge.common.ApiResult;
-import clone.bzm.lounge.configration.security.BzmMember;
-import clone.bzm.lounge.configration.security.BzmUserAuthentication;
+import clone.bzm.lounge.configuration.security.BzmMember;
+import clone.bzm.lounge.configuration.security.BzmUserAuthentication;
 import clone.bzm.lounge.user.adapter.in.rest.dto.UserPasswordChangeRequest;
 import clone.bzm.lounge.user.adapter.in.rest.dto.UserResponse;
 import clone.bzm.lounge.user.adapter.in.rest.dto.UserSignInRequest;

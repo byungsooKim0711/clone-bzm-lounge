@@ -1,7 +1,7 @@
 package clone.bzm.lounge.user.application.service;
 
-import clone.bzm.lounge.configration.exception.DuplicateUserException;
-import clone.bzm.lounge.configration.security.JwtProvider;
+import clone.bzm.lounge.configuration.exception.DuplicateUserException;
+import clone.bzm.lounge.configuration.security.JwtProvider;
 import clone.bzm.lounge.user.application.port.in.UserUseCase;
 import clone.bzm.lounge.user.application.port.in.command.ChangePasswordCommand;
 import clone.bzm.lounge.user.application.port.in.command.SignInCommand;

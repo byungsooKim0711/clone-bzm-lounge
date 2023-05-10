@@ -1,4 +1,4 @@
-package clone.bzm.lounge.configration.exception;
+package clone.bzm.lounge.configuration.exception;
 
 import static clone.bzm.lounge.common.ResultCode.AUTHENTICATION_ERROR;
 

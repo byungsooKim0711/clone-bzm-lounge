@@ -1,4 +1,4 @@
-package clone.bzm.lounge.configration.jpa;
+package clone.bzm.lounge.configuration.jpa;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

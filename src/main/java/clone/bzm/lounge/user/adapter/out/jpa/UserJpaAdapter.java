@@ -1,7 +1,7 @@
 package clone.bzm.lounge.user.adapter.out.jpa;
 
-import clone.bzm.lounge.configration.exception.NoMatchedPasswordException;
-import clone.bzm.lounge.configration.exception.NotFoundUserException;
+import clone.bzm.lounge.configuration.exception.NoMatchedPasswordException;
+import clone.bzm.lounge.configuration.exception.NotFoundUserException;
 import clone.bzm.lounge.user.application.port.in.command.ChangePasswordCommand;
 import clone.bzm.lounge.user.application.port.in.command.SignUpCommand;
 import clone.bzm.lounge.user.application.port.out.jpa.UserLoadPort;

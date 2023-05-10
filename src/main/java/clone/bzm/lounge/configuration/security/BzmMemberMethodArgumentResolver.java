@@ -1,6 +1,6 @@
-package clone.bzm.lounge.configration.security;
+package clone.bzm.lounge.configuration.security;
 
-import clone.bzm.lounge.configration.exception.AuthenticationException;
+import clone.bzm.lounge.configuration.exception.AuthenticationException;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Component;

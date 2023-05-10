@@ -1,4 +1,4 @@
-package clone.bzm.lounge.configration.exception;
+package clone.bzm.lounge.configuration.exception;
 
 import clone.bzm.lounge.common.ResultCode;
 

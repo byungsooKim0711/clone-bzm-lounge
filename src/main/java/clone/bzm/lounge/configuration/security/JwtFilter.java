@@ -1,4 +1,4 @@
-package clone.bzm.lounge.configration.security;
+package clone.bzm.lounge.configuration.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micrometer.common.util.StringUtils;

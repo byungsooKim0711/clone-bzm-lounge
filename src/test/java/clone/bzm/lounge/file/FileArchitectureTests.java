@@ -17,7 +17,7 @@ public class FileArchitectureTests {
                     .applicationServices(
                             "clone.bzm.lounge.file.application..",
                             "clone.bzm.lounge.common..",
-                            "clone.bzm.lounge.configration.."
+                            "clone.bzm.lounge.configuration.."
                     )
                     .adapter("in-rest", "clone.bzm.lounge.file.adapter.in.rest..")
                     .adapter("out-jpa", "clone.bzm.lounge.file.adapter.out.jpa..")

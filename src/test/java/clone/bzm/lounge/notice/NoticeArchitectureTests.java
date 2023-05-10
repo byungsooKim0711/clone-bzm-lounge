@@ -17,7 +17,7 @@ public class NoticeArchitectureTests {
                     .applicationServices(
                             "clone.bzm.lounge.notice.application..",
                             "clone.bzm.lounge.common..",
-                            "clone.bzm.lounge.configration.."
+                            "clone.bzm.lounge.configuration.."
                     )
                     .adapter("in-rest", "clone.bzm.lounge.notice.adapter.in.rest..")
                     .adapter("out-jpa", "clone.bzm.lounge.notice.adapter.out.jpa..")

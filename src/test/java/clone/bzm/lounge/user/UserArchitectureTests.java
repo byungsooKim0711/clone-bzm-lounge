@@ -17,7 +17,7 @@ public class UserArchitectureTests {
                     .applicationServices(
                             "clone.bzm.lounge.user.application..",
                             "clone.bzm.lounge.common..",
-                            "clone.bzm.lounge.configration.."
+                            "clone.bzm.lounge.configuration.."
                     )
                     .adapter("in-rest", "clone.bzm.lounge.user.adapter.in.rest..")
                     .adapter("out-jpa", "clone.bzm.lounge.user.adapter.out.jpa..")

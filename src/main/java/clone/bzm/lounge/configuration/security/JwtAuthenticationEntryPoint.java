@@ -1,4 +1,4 @@
-package clone.bzm.lounge.configration.security;
+package clone.bzm.lounge.configuration.security;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

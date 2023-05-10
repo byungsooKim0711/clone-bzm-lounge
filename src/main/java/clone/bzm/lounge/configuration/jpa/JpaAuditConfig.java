@@ -1,6 +1,6 @@
-package clone.bzm.lounge.configration.jpa;
+package clone.bzm.lounge.configuration.jpa;
 
-import clone.bzm.lounge.configration.security.BzmUserDetails;
+import clone.bzm.lounge.configuration.security.BzmUserDetails;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

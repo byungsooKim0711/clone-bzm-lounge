@@ -1,4 +1,4 @@
-package clone.bzm.lounge.configration.security;
+package clone.bzm.lounge.configuration.security;
 
 import clone.bzm.lounge.user.domain.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
