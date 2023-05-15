@@ -1,4 +1,4 @@
-insert into tb_category
+insert into tb_category(id, created_at, created_by, modified_at, modified_by, name, parent_id)
 values (1, now(), -1, now(), -1, '알림톡', null),
        (2, now(), -1, now(), -1, '친구톡', null),
        (3, now(), -1, now(), -1, '상담톡', null),
@@ -9,7 +9,8 @@ values (1, now(), -1, now(), -1, '알림톡', null),
        (8, now(), -1, now(), -1, '비즈니스채널 전환', null),
        (9, now(), -1, now(), -1, '기타', null),
 
-       (null, now(), -1, now(), -1, '상품/서비스 문의', 1),
+       (10, now(), -1, now(), -1, '상품/서비스 문의', 1),
+       (11, now(), -1, now(), -1, '템플릿 관련', 1),
        (null, now(), -1, now(), -1, '메시지발송 확인', 1),
        (null, now(), -1, now(), -1, '어뷰징 차단 및 해제문의', 1),
        (null, now(), -1, now(), -1, '템플릿 불일치', 1),
@@ -17,7 +18,6 @@ values (1, now(), -1, now(), -1, '알림톡', null),
        (null, now(), -1, now(), -1, '템플릿 복사', 1),
        (null, now(), -1, now(), -1, '발신프로필 복사', 1),
        (null, now(), -1, now(), -1, '발신프로필 관련', 1),
-       (null, now(), -1, now(), -1, '템플릿 관련', 1),
        (null, now(), -1, now(), -1, '비즈니스채널 관련 문의', 1),
        (null, now(), -1, now(), -1, '공식딜러사 정보 변경', 1),
        (null, now(), -1, now(), -1, '개인정보점검', 1),
@@ -37,4 +37,11 @@ values (1, now(), -1, now(), -1, '알림톡', null),
        (null, now(), -1, now(), -1, '채널 메시지 제재 문의', 9)
 ;
 
+insert into tb_post
+(id, completed_at, content, created_at, created_by, modified_at, modified_by, privacy, progress_status, title,
+ category_id)
+values
+       (1, now(), '상품/서비스 문의 게시글 본문', now(), 1, now(), 1, false, 'C', '상품/서비스 문의 게시글 제목', 10),
+       (1, now(), '템플릿 관련 문의 게시글 본문', now(), 1, now(), 1, false, 'C', '템플릿 관련 문의 게시글 제목', 11)
 
+;
