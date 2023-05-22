@@ -1,7 +1,7 @@
 package clone.bzm.lounge.file.adapter.out.disk;
 
 import clone.bzm.lounge.common.ResultCode;
-import clone.bzm.lounge.configuration.exception.FileUploadException;
+import clone.bzm.lounge.common.exception.FileUploadException;
 import clone.bzm.lounge.file.application.port.out.FileDiskUploadPort;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

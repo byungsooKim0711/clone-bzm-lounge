@@ -1,6 +1,6 @@
 package clone.bzm.lounge.notice.adapter.out.jpa;
 
-import clone.bzm.lounge.configuration.exception.NotFoundNoticeException;
+import clone.bzm.lounge.common.exception.NotFoundNoticeException;
 import clone.bzm.lounge.notice.application.port.out.NoticeLoadPort;
 import clone.bzm.lounge.notice.application.port.out.NoticeSavePort;
 import clone.bzm.lounge.notice.domain.Notice;

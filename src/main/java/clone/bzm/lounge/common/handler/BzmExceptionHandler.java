@@ -1,7 +1,7 @@
-package clone.bzm.lounge.configuration.exception.handler;
+package clone.bzm.lounge.common.handler;
 
 import clone.bzm.lounge.common.ApiResult;
-import clone.bzm.lounge.configuration.exception.AbstractException;
+import clone.bzm.lounge.common.exception.AbstractException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
