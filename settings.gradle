@@ -3,3 +3,4 @@ rootProject.name = 'lounge'
 include 'common'
 include 'temp'
 
+include 'configuration:security'

@@ -56,7 +56,7 @@ public class UserService implements UserUseCase {
                 .build()
         );
 
-        String token = JwtProvider.generateToken(user);
+        String token = JwtProvider.generateToken(user.getId(), user.getEmail(), user.getName(), user.getStatus());
 
         user.addToken(new UserToken(token));
 

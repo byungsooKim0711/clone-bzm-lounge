@@ -1,6 +1,5 @@
 package clone.bzm.lounge.configuration.security;
 
-import clone.bzm.lounge.user.domain.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -14,16 +13,16 @@ public class JwtProvider {
 
     private static final String SECRET_KEY = "c_l_o_n_e/b_z_m/s_e_c_r_e_t/k_e_y";
 
-    public static String generateToken(User user) {
-        return generateToken(null, user);
+    public static String generateToken(Long id, String email, String name, String status) {
+        return generateToken(id, email, name, status, null);
     }
 
-    public static String generateToken(String audience, User user) {
+    public static String generateToken(Long id, String email, String name, String status, String audience) {
         Map<String, Object> credential = Map.of(
-                "id", user.getId(),
-                "email", user.getEmail(),
-                "name", user.getName(),
-                "status", user.getStatus()
+                "id", id,
+                "email", email,
+                "name", name,
+                "status", status
         );
 
         return Jwts.builder()
