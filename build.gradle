@@ -25,6 +25,13 @@ subprojects {
     }
 }
 
+project(':user') {
+    dependencies {
+        implementation project(':common')
+        implementation project(':configuration:security')
+    }
+}
+
 project(':temp') {
     dependencies {
         implementation project(':common')
