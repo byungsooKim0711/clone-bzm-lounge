@@ -1,21 +1,19 @@
-package clone.bzm.lounge.user.application.port.out.event;
+package clone.bzm.lounge.userevent.domain;
 
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.context.ApplicationEvent;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class PasswordChangeEvent extends ApplicationEvent {
+public class UserPasswordChangeEvent {
 
     private final Long userId;
     private final LocalDateTime modifiedAt;
     private final boolean sessionClear;
 
     @Builder
-    public PasswordChangeEvent(Object source, Long userId, LocalDateTime modifiedAt, boolean sessionClear) {
-        super(source);
+    public UserPasswordChangeEvent(Long userId, LocalDateTime modifiedAt, boolean sessionClear) {
         this.userId = userId;
         this.modifiedAt = modifiedAt;
         this.sessionClear = sessionClear;

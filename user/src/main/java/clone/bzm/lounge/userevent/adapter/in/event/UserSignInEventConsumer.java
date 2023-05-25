@@ -1,6 +1,7 @@
-package clone.bzm.lounge.userhistory.adapter.in.event;
+package clone.bzm.lounge.userevent.adapter.in.event;
 
-import clone.bzm.lounge.user.application.port.out.event.SignInEvent;
+import clone.bzm.lounge.userevent.domain.UserEvent;
+import clone.bzm.lounge.userevent.domain.UserSignInEvent;
 import clone.bzm.lounge.userhistory.application.port.in.UserSignInHistoryUseCase;
 import clone.bzm.lounge.userhistory.application.port.in.command.UserSignInHistoryCommand;
 import lombok.RequiredArgsConstructor;
@@ -17,14 +18,15 @@ class UserSignInEventConsumer {
 
     @Async
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
-    public void onApplicationEvent(SignInEvent event) {
+    public void onApplicationEvent(UserEvent<UserSignInEvent> event) {
+        UserSignInEvent eventData = event.getData();
         useCase.saveSignInHistory(
                 new UserSignInHistoryCommand(
-                        event.getSignInUserId(),
-                        event.getDevice(),
-                        event.getIp(),
-                        event.getService(),
-                        event.getType().name()
+                        eventData.getSignInUserId(),
+                        eventData.getDevice(),
+                        eventData.getIp(),
+                        eventData.getService(),
+                        eventData.getType().name()
                 )
         );
     }

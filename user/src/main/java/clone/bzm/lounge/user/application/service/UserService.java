@@ -6,14 +6,15 @@ import clone.bzm.lounge.user.application.port.in.UserUseCase;
 import clone.bzm.lounge.user.application.port.in.command.ChangePasswordCommand;
 import clone.bzm.lounge.user.application.port.in.command.SignInCommand;
 import clone.bzm.lounge.user.application.port.in.command.SignUpCommand;
-import clone.bzm.lounge.user.application.port.out.event.PasswordChangeEvent;
-import clone.bzm.lounge.user.application.port.out.event.SignInEvent;
-import clone.bzm.lounge.user.application.port.out.event.SignInEvent.SignInType;
-import clone.bzm.lounge.user.application.port.out.event.UserEventPort;
+import clone.bzm.lounge.user.application.port.out.event.UserEventPublishPort;
 import clone.bzm.lounge.user.application.port.out.jpa.UserLoadPort;
 import clone.bzm.lounge.user.application.port.out.jpa.UserSavePort;
 import clone.bzm.lounge.user.domain.User;
 import clone.bzm.lounge.user.domain.UserToken;
+import clone.bzm.lounge.userevent.domain.UserPasswordChangeEvent;
+import clone.bzm.lounge.userevent.domain.UserEvent;
+import clone.bzm.lounge.userevent.domain.UserSignInEvent;
+import clone.bzm.lounge.userevent.domain.UserSignInEvent.SignInType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +27,7 @@ public class UserService implements UserUseCase {
 
     private final UserLoadPort userLoadPort;
     private final UserSavePort userSavePort;
-    private final UserEventPort userEventPort;
+    private final UserEventPublishPort userEventPort;
 
     @Transactional
     @Override
@@ -46,14 +47,16 @@ public class UserService implements UserUseCase {
         User user = userLoadPort.findUser(command.email(), command.plainPassword());
 
         // 로그인 이벤트 발행
-        userEventPort.publishSignInEvent(SignInEvent.builder()
-                .source(this)
-                .signInUserId(user.getId())
-                .ip(command.ip())
-                .device(command.device())
-                .service("clone-bzm-lounge.kakao.com")
-                .type(SignInType.WEB)
-                .build()
+        userEventPort.publishUserEvent(new UserEvent<>(
+                        this,
+                        UserSignInEvent.builder()
+                                .signInUserId(user.getId())
+                                .ip(command.ip())
+                                .device(command.device())
+                                .service("clone-bzm-lounge.kakao.com")
+                                .type(SignInType.WEB)
+                                .build()
+                )
         );
 
         String token = JwtProvider.generateToken(user.getId(), user.getEmail(), user.getName(), user.getStatus());
@@ -66,7 +69,7 @@ public class UserService implements UserUseCase {
 
     @Override
     public void signOut() {
-
+        // TODO:
     }
 
     @Transactional
@@ -74,12 +77,14 @@ public class UserService implements UserUseCase {
     public void changePassword(ChangePasswordCommand command) {
         User user = userSavePort.changePassword(command);
 
-        userEventPort.publishPasswordEvent(PasswordChangeEvent.builder()
-                        .source(this)
-                        .userId(user.getId())
-                        .sessionClear(command.sessionClear())
-                        .modifiedAt(LocalDateTime.now())
-                .build()
+        userEventPort.publishUserEvent(new UserEvent<>(
+                        this,
+                        UserPasswordChangeEvent.builder()
+                                .userId(user.getId())
+                                .sessionClear(command.sessionClear())
+                                .modifiedAt(LocalDateTime.now())
+                                .build()
+                )
         );
     }
 

@@ -1,13 +1,12 @@
-package clone.bzm.lounge.user.application.port.out.event;
+package clone.bzm.lounge.userevent.domain;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.context.ApplicationEvent;
 
 @Getter
-public class SignInEvent extends ApplicationEvent {
+public class UserSignInEvent {
 
     @NotNull
     private final Long signInUserId;
@@ -25,8 +24,7 @@ public class SignInEvent extends ApplicationEvent {
     private final SignInType type;
 
     @Builder
-    public SignInEvent(Object source, Long signInUserId, String device, String ip, String service, SignInType type) {
-        super(source);
+    public UserSignInEvent(Long signInUserId, String device, String ip, String service, SignInType type) {
         this.signInUserId = signInUserId;
         this.device = device;
         this.ip = ip;

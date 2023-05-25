@@ -16,7 +16,7 @@ public class UserLoginHistoryArchitectureTests {
                     .domainServices("clone.bzm.lounge.userhistory.application.service..")
                     .applicationServices("clone.bzm.lounge.userhistory.application..")
                     .adapter("out-jpa", "clone.bzm.lounge.userhistory.adapter.out.jpa..")
-                    .adapter("in-event", "clone.bzm.lounge.userhistory.adapter.in.event..")
+                    .adapter("in-event", "clone.bzm.lounge.userevent.adapter.event..")
             ;
 
 }

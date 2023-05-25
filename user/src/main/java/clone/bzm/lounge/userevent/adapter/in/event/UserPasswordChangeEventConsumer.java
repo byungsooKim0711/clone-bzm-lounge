@@ -1,6 +1,7 @@
-package clone.bzm.lounge.userhistory.adapter.in.event;
+package clone.bzm.lounge.userevent.adapter.in.event;
 
-import clone.bzm.lounge.user.application.port.out.event.PasswordChangeEvent;
+import clone.bzm.lounge.userevent.domain.UserPasswordChangeEvent;
+import clone.bzm.lounge.userevent.domain.UserEvent;
 import clone.bzm.lounge.userhistory.application.port.in.UserPasswordHistoryUseCase;
 import clone.bzm.lounge.userhistory.application.port.in.command.UserPasswordHistoryCommand;
 import lombok.RequiredArgsConstructor;
@@ -19,25 +20,14 @@ public class UserPasswordChangeEventConsumer {
 
     @Async
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
-    public void consumePasswordChangeEvent(PasswordChangeEvent event) {
-        log.info("Consume password change event. userId: {}", event.getUserId());
+    public void consumePasswordChangeEvent(UserEvent<UserPasswordChangeEvent> event) {
+        UserPasswordChangeEvent eventData = event.getData();
+        log.info("Consume password change event. userId: {}", eventData.getUserId());
         useCase.savePasswordHistory(
                 new UserPasswordHistoryCommand(
-                        event.getUserId(),
-                        event.getModifiedAt()
+                        eventData.getUserId(),
+                        eventData.getModifiedAt()
                 )
         );
     }
-
-    @Async
-    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
-    public void signOut(PasswordChangeEvent event) {
-        if (!event.isSessionClear()) {
-            /* skip */
-            return;
-        }
-
-        log.info("Consume session clear event. userId: {}", event.getUserId());
-    }
-
 }
