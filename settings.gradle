@@ -5,4 +5,4 @@ include 'temp'
 
 include 'user'
 
-include 'configuration:security'
+include 'configuration:security-web'

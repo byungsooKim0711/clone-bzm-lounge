@@ -28,18 +28,18 @@ subprojects {
 project(':user') {
     dependencies {
         implementation project(':common')
-        implementation project(':configuration:security')
+        implementation project(':configuration:security-web')
     }
 }
 
 project(':temp') {
     dependencies {
         implementation project(':common')
-        implementation project(':configuration:security')
+        implementation project(':configuration:security-web')
     }
 }
 
-project(':configuration:security') {
+project(':configuration:security-web') {
     dependencies {
         implementation project(':common')
     }
