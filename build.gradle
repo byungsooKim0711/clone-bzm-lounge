@@ -44,3 +44,9 @@ project(':configuration:security-web') {
         implementation project(':common')
     }
 }
+
+project(':configuration:security-reactive-web') {
+    dependencies {
+        implementation project(':common')
+    }
+}
